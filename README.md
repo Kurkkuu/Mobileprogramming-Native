@@ -1,2 +1,2 @@
-# Viikkotehtava2 viewmodel
+# Viikkotehtava1 Kotlin-perusteet
 
