@@ -1,0 +1,2 @@
+# Viikkotehtava2 viewmodel
+
