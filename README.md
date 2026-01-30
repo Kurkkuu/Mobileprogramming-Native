@@ -1,6 +1,7 @@
 # Mobiiliohjelmointi natiiviteknologialla
 
 # Week2 ViewModel
+[Week2DemoVideo](https://youtu.be/_2vSW-P1zs4)
 
 ## Compose-tilanhallinta
 
@@ -23,7 +24,9 @@ Compose-tilanhallinta perustuu seuraaviin periaatteisiin:
 2. **Tilan jakaminen**
 3. **Testaus**
 4. **Järkevä arkkitehtuuri**
+   
 # Week 3 - MVVM ja StateFlow
+[Week3DemoVideo](https://youtu.be/9toVEbTUlFM)
 
 ## MVVM-arkkitehtuuri
 
