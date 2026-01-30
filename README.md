@@ -43,7 +43,7 @@ Compose-tilanhallinta perustuu seuraaviin periaatteisiin:
 
 **StateFlow** on tilallinen virta, joka säilyttää aina viimeisimmän arvon.
 
-### Näin se toimii tässä sovelluksessa:
+### Esimerkki:
 
 ```kotlin
 // Repository: MutableStateFlow sisäiseen käyttöön
