@@ -1,6 +1,8 @@
-package com.example.viikkotehtava1.domain
+package com.example.viikkotehtava1.domain.viewmodel
 
 import androidx.lifecycle.ViewModel
+import com.example.viikkotehtava1.domain.Task
+import com.example.viikkotehtava1.domain.TaskRepository
 import kotlinx.coroutines.flow.StateFlow
 
 class TaskViewModel : ViewModel() {

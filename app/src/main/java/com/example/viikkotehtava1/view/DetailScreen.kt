@@ -1,4 +1,4 @@
-package com.example.viikkotehtava1
+package com.example.viikkotehtava1.view
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*

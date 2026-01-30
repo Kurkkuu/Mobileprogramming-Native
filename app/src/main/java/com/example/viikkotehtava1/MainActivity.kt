@@ -9,8 +9,10 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.viikkotehtava1.domain.Task
-import com.example.viikkotehtava1.domain.TaskViewModel
+import com.example.viikkotehtava1.domain.viewmodel.TaskViewModel
 import com.example.viikkotehtava1.ui.theme.Viikkotehtava1Theme
+import com.example.viikkotehtava1.view.DetailScreen
+import com.example.viikkotehtava1.view.HomeScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
