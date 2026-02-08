@@ -1,4 +1,4 @@
-package com.example.viikkotehtava1.view
+package com.example.viikkotehtava1
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -11,30 +11,29 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.viikkotehtava1.domain.Task
 import com.example.viikkotehtava1.domain.viewmodel.TaskViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
-    modifier: Modifier = Modifier,
-    viewModel: TaskViewModel = viewModel(),
+    viewModel: TaskViewModel,
     onTaskClick: (Task) -> Unit,
     onAddClick: () -> Unit
 ) {
-    val tasks by viewModel.tasks.collectAsState()
+    val tasks by viewModel.tasks.collectAsStateWithLifecycle()
 
     Scaffold(
-        topBar = { TopAppBar(title = { Text("Tehtävälista") }) },
+        topBar = { TopAppBar(title = { Text("Task list") }) },
         floatingActionButton = {
             FloatingActionButton(onClick = onAddClick) {
-                Icon(Icons.Default.Add, contentDescription = "Lisää")
+                Icon(Icons.Default.Add, contentDescription = "Add")
             }
         }
     ) { padding ->
         LazyColumn(
-            modifier = modifier
+            modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
         ) {
@@ -69,17 +68,13 @@ fun TaskItem(
             Checkbox(checked = task.done, onCheckedChange = { onToggle() })
             Spacer(Modifier.width(8.dp))
             Column(Modifier.weight(1f)) {
-                Text(task.title, fontSize = 18.sp)
-                Text("Due: ${task.dueDate}", fontSize = 14.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 Text(
-                    "Priority: ${task.priority}",
-                    fontSize = 12.sp,
-                    color = when(task.priority) {
-                        1 -> MaterialTheme.colorScheme.error
-                        2 -> MaterialTheme.colorScheme.primary
-                        else -> MaterialTheme.colorScheme.secondary
-                    }
+                    text = task.title,
+                    fontSize = 18.sp,
+                    textDecoration = if (task.done) androidx.compose.ui.text.style.TextDecoration.LineThrough
+                    else androidx.compose.ui.text.style.TextDecoration.None
                 )
+                Text("Due: ${task.dueDate}", fontSize = 14.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
         }
     }
