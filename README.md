@@ -57,3 +57,41 @@ val tasks: StateFlow&lt;List&lt;Task&gt;&gt; = _tasks.asStateFlow()
 
 // Päivitys lähettää uuden arvon kaikille kuuntelijoille
 _tasks.value = _tasks.value + newTask
+```
+# Week 4 - Navigointi
+
+[Week4DemoVideo](https://youtube.com/shorts/4FOa8JR__gU)
+
+## Navigointi jetpack composessa
+
+Navigointi mahdollistaa siirtymisen eri näkymien välillä.
+
+#### Keskeiset komponentit
+1. NavController: Hallinnoi navigaatiotilaa
+2. NavHost: Määrittelee reitit
+3. Routes: ("home", "calendar", "settings")
+   
+#### Navigaatiorakenne
+1. HomeScreen: Tehtävälista
+2. CalendarScreen: Tehtävät kalenterinäkymässä
+3. SettingsScreen: Sovelluksen tiedot
+   
+## MVVM + navigointi
+Sama ViewModel jaetaan kaikkien näkymien kesken. ViewModel luodaan MainActivity:ssä, joten se säilyy koko navigaation ajan.
+
+```kotlin
+// ViewModel luodaan kerran MainActivityssä
+val viewModel: TaskViewModel = viewModel()
+
+// Välitetään kaikille screeneille
+composable(Routes.HOME) { HomeScreen(viewModel = viewModel, ...) }
+composable(Routes.CALENDAR) { CalendarScreen(viewModel = viewModel, ...) }
+```
+## CalendarScreen
+```kotlin
+tasks.groupBy { it.dueDate }  // Map<String, List<Task>>
+```
+Päivämäärät on otsikoita ja niiden alla on kyseisen päivän tehtävät
+
+## Dialogit vs navigointi
+Dialogit on overlay-komponentteja, jotka näkyvät nykyisen näkymän päällä ilman navigaatiota.
