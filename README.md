@@ -95,3 +95,39 @@ Päivämäärät on otsikoita ja niiden alla on kyseisen päivän tehtävät
 
 ## Dialogit vs navigointi
 Dialogit on overlay-komponentteja, jotka näkyvät nykyisen näkymän päällä ilman navigaatiota.
+
+
+# Week 5 - Retrofit + OpenWeather API
+[Week5DemoVideo](https://youtu.be/XXXXXXX)
+
+## Mitä Retrofit tekee?
+
+Retrofit on HTTP-kirjasto, joka tekee API-kutsuista yksinkertaisia:
+- Määritellään rajapinta annotaatioilla
+- Retrofit hoitaa HTTP-pyynnöt, URL-koostamiset ja vastaukse
+
+## JSON:in muutto Dataluokiksi
+
+**Gson** muuntaa JSON-vastauksen:
+- `@SerializedName("temp")` kertoo mitä JSON-kenttää vastaa
+- `converter-gson` hoitaa muunnoksen taustalla
+
+## Coroutines
+
+- `viewModelScope.launch` käynnistää coroutineen ViewModelin sisällä
+- `suspend` funktio tekee API-kutsun
+- Kun data saapuu, UI päivittyy automaattisesti
+
+## UI-tilan toiminta
+
+```kotlin
+data class WeatherUiState(
+    val weather: WeatherResponse? = null,
+    val isLoading: Boolean = false,
+    val error: String? = null,
+    val city: String = ""
+)
+```
+## Api keyn tallennus
+
+- local.properties > build.cradle.kts > käytetään retrofitissä
