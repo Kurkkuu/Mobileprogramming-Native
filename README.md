@@ -133,7 +133,7 @@ data class WeatherUiState(
 - local.properties > build.cradle.kts > käytetään retrofitissä
 
 # Week 6 - Room tietokanta
-
+[Week6DemoVideo](https://youtu.be/_hBcuPLa5Wg)
 ## Mitä room tekee?
 Room on SQLite-kirjasto, joka yksinkertaistaa tietokannan käyttöä.
 - Entity = Data-luokka
