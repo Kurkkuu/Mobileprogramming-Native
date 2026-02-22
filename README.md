@@ -131,3 +131,67 @@ data class WeatherUiState(
 ## Api keyn tallennus
 
 - local.properties > build.cradle.kts > käytetään retrofitissä
+
+# Week 6 - Room tietokanta
+
+## Mitä room tekee?
+Room on SQLite-kirjasto, joka yksinkertaistaa tietokannan käyttöä.
+- Entity = Data-luokka
+- DAO = SQL-kysely
+- Database = Tietokannan yhteys ja konfiguraatio
+- Repository = yhdistää roomin ja API:n + välimuistilogiikka
+
+## Projektin rakenne
+
+    data/
+
+    model/ WeatherResponse.kt, WeatherEntity.kt
+
+    local/
+    WeatherDao.kt
+    AppDatabase.kt
+
+    remote/
+    WeatherApi.kt
+
+    repository/
+    WeatherRepository.kt
+
+    viewmodel/WeatherViewModel.kt
+
+    WeatherScreen.kt
+
+## Datavirta
+1. Käyttäjä
+2. ViewModel
+3. Repository
+4. Välimuisti (jos data alle 30min vanhaa)
+5. API (Jos liian vanhaa dataa)
+6. Uusi data tallennetaan roomiin
+7. UI
+
+## Välimuisti logiikka
+
+```kotlin
+val cached = dao.getWeather(city).first()
+
+if (cached != null) {
+    val age = System.currentTimeMillis() - cached.timestamp
+    
+
+    if (age < CACHE_DURATION_MS) {
+                    
+        return WeatherResult.Success(cached.toResponse(), fromCache = true)
+    }
+        }
+
+        return try {
+            val response = api.getWeather(city, apiKey)
+                dao.insertWeather(response.toEntity())
+                WeatherResult.Success(response, fromCache = false)
+
+            } catch (e: Exception) {
+                if (cached != null) {
+                    return WeatherResult.Success(cached.toResponse(), fromCache = true, stale = true)
+                }
+```
