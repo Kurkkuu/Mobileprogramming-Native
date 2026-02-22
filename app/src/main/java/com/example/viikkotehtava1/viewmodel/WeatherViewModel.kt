@@ -37,7 +37,7 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
     fun fetchWeather() {
         val city = uiState.city.trim()
         if (city.isEmpty()) {
-            uiState = uiState.copy(error = "Syötä kaupungin nimi")
+            uiState = uiState.copy(error = "Insert city")
             return
         }
 
