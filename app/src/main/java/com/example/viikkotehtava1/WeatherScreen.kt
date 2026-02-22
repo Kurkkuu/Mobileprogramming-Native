@@ -25,7 +25,7 @@ fun WeatherScreen(
     val history by viewModel.history.collectAsState(initial = emptyList())
 
     Scaffold(
-        topBar = { TopAppBar(title = { Text("WeatherApp (Room)") }) }
+        topBar = { TopAppBar(title = { Text("WeatherApp") }) }
     ) { padding ->
         LazyColumn(
             modifier = Modifier
